@@ -1,6 +1,277 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Sude Şahin | Portfolio</title>
+  <meta name="description" content="Industrial Engineering MSc · Data Analytics · R/Python/SQL" />
+
+  <style>
+    :root{
+      --bg: #0b1020;
+      --card: rgba(255,255,255,0.06);
+      --text: rgba(255,255,255,0.92);
+      --muted: rgba(255,255,255,0.68);
+      --line: rgba(255,255,255,0.12);
+      --accent: #7c3aed;
+      --accent2:#22c55e;
+      --shadow: 0 20px 60px rgba(0,0,0,.35);
+      --radius: 18px;
+    }
+    *{box-sizing:border-box}
+    body{
+      margin:0;
+      font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji","Segoe UI Emoji";
+      color:var(--text);
+      background:
+        radial-gradient(1200px 600px at 20% -10%, rgba(124,58,237,.35), transparent 60%),
+        radial-gradient(900px 500px at 90% 10%, rgba(34,197,94,.20), transparent 55%),
+        radial-gradient(1000px 700px at 50% 110%, rgba(59,130,246,.18), transparent 60%),
+        var(--bg);
+      line-height:1.5;
+    }
+    a{color:inherit; text-decoration:none}
+    .container{max-width:1000px; margin:0 auto; padding:28px 18px 70px}
+    .nav{
+      display:flex; align-items:center; justify-content:space-between;
+      padding:12px 14px;
+      border:1px solid var(--line);
+      background:rgba(255,255,255,0.04);
+      border-radius:999px;
+      backdrop-filter: blur(10px);
+      box-shadow: var(--shadow);
+      position: sticky; top:14px; z-index:10;
+    }
+    .nav .left{display:flex; gap:10px; align-items:center}
+    .badge{
+      font-size:12px; color:var(--muted);
+      border:1px solid var(--line);
+      padding:6px 10px; border-radius:999px;
+      background:rgba(255,255,255,0.03);
+    }
+    .nav .links{display:flex; gap:12px; font-size:14px; color:var(--muted)}
+    .nav .links a:hover{color:var(--text)}
+    .hero{
+      margin-top:22px;
+      display:grid; gap:18px;
+      grid-template-columns: 1.2fr .8fr;
+      align-items:stretch;
+    }
+    @media (max-width: 880px){
+      .hero{grid-template-columns: 1fr}
+      .nav{gap:10px; flex-wrap:wrap}
+      .nav .links{flex-wrap:wrap}
+    }
+    .panel{
+      border:1px solid var(--line);
+      background:rgba(255,255,255,0.04);
+      border-radius: var(--radius);
+      padding:22px;
+      box-shadow: var(--shadow);
+      backdrop-filter: blur(12px);
+    }
+    h1{margin:0; font-size:40px; letter-spacing:-0.02em}
+    .subtitle{margin-top:8px; color:var(--muted); font-size:16px}
+    .cta{display:flex; flex-wrap:wrap; gap:10px; margin-top:16px}
+    .btn{
+      display:inline-flex; align-items:center; gap:10px;
+      padding:10px 14px;
+      border-radius: 12px;
+      border:1px solid var(--line);
+      background:rgba(255,255,255,0.05);
+      color:var(--text);
+      font-size:14px;
+      transition: transform .12s ease, background .12s ease, border-color .12s ease;
+      cursor:pointer;
+    }
+    .btn:hover{transform: translateY(-1px); background:rgba(255,255,255,0.08); border-color: rgba(255,255,255,0.20)}
+    .btn.primary{
+      border-color: rgba(124,58,237,.6);
+      background: linear-gradient(180deg, rgba(124,58,237,.35), rgba(124,58,237,.12));
+    }
+    .grid{
+      margin-top:20px;
+      display:grid; gap:14px;
+      grid-template-columns: repeat(2, 1fr);
+    }
+    @media (max-width: 880px){
+      .grid{grid-template-columns: 1fr}
+    }
+    .card{
+      border:1px solid var(--line);
+      background:rgba(255,255,255,0.04);
+      border-radius: var(--radius);
+      padding:18px;
+      box-shadow: var(--shadow);
+      transition: transform .12s ease, border-color .12s ease, background .12s ease;
+      position:relative;
+      overflow:hidden;
+    }
+    .card:hover{transform: translateY(-2px); border-color: rgba(255,255,255,0.22); background:rgba(255,255,255,0.06)}
+    .card .title{display:flex; align-items:flex-start; justify-content:space-between; gap:14px}
+    .card h3{margin:0; font-size:18px}
+    .card p{margin:10px 0 12px; color:var(--muted); font-size:14px}
+    .tags{display:flex; flex-wrap:wrap; gap:8px}
+    .tag{
+      font-size:12px; color:rgba(255,255,255,0.78);
+      border:1px solid var(--line);
+      padding:5px 9px; border-radius:999px;
+      background:rgba(255,255,255,0.03);
+    }
+    .section{margin-top:34px}
+    .section h2{margin:0 0 12px; font-size:18px; letter-spacing:-0.01em}
+    .two-col{display:grid; grid-template-columns: 1fr 1fr; gap:14px}
+    @media (max-width: 880px){ .two-col{grid-template-columns: 1fr} }
+    .list{margin:0; padding-left:18px; color:var(--muted); font-size:14px}
+    footer{margin-top:40px; color:rgba(255,255,255,0.55); font-size:13px}
+    .dot{
+      width:10px; height:10px; border-radius:999px;
+      background: radial-gradient(circle at 30% 30%, #fff, rgba(255,255,255,0.2));
+      box-shadow: 0 0 0 6px rgba(124,58,237,.18);
+    }
+    .mini{font-size:13px; color:var(--muted)}
+  </style>
+</head>
+
+<body>
+  <div class="container">
+    <div class="nav">
+      <div class="left">
+        <span class="dot"></span>
+        <div>
+          <div style="font-weight:650">Sude Şahin</div>
+          <div class="mini">Industrial Engineering MSc · Data Analytics</div>
+        </div>
+        <span class="badge">R / Python / SQL</span>
+      </div>
+
+      <div class="links">
+        <a href="#projects">Projects</a>
+        <a href="#skills">Skills</a>
+        <a href="#contact">Contact</a>
+      </div>
+    </div>
+
+    <div class="hero">
+      <div class="panel">
+        <h1>Profit-oriented analytics, from model to decision.</h1>
+        <div class="subtitle">
+          I build data products that don’t stop at predictions — they turn probabilities into
+          business actions (e.g., EV-based customer targeting).
+        </div>
+
+        <div class="cta">
+          <a class="btn primary" href="https://github.com/sudeshnn" target="_blank" rel="noreferrer">GitHub</a>
+          <a class="btn" href="#projects">View projects</a>
+          <!-- Optional: add your LinkedIn later -->
+          <!-- <a class="btn" href="https://www.linkedin.com/in/USERNAME/" target="_blank" rel="noreferrer">LinkedIn</a> -->
+        </div>
+      </div>
+
+      <div class="panel">
+        <h2 style="margin:0 0 10px">Now</h2>
+        <ul class="list">
+          <li>Building an end-to-end churn + decision framework portfolio</li>
+          <li>Focusing on interpretable ML + business value</li>
+          <li>Interested in analytics, digital transformation & optimization</li>
+        </ul>
+
+        <div style="margin-top:14px; border-top:1px solid var(--line); padding-top:14px">
+          <div style="font-weight:650">Highlights</div>
+          <div class="subtitle" style="margin-top:6px">
+            EV rule: <span style="color:rgba(255,255,255,0.9)">P(churn) × uplift × CLV − cost</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div id="projects" class="section">
+      <h2>Projects</h2>
+
+      <div class="grid">
+        <a class="card" href="https://github.com/sudeshnn/churn-decision-framework" target="_blank" rel="noreferrer">
+          <div class="title">
+            <h3>Churn Prediction with a Profit-Oriented Decision Framework</h3>
+            <span class="badge">Featured</span>
+          </div>
+          <p>
+            Predict churn probabilities and convert them into an economically rational
+            contact policy using CLV, campaign cost and retention uplift assumptions.
+          </p>
+          <div class="tags">
+            <span class="tag">Classification</span>
+            <span class="tag">Logistic Regression</span>
+            <span class="tag">Expected Value</span>
+            <span class="tag">CLV</span>
+            <span class="tag">Sensitivity Analysis</span>
+          </div>
+        </a>
+
+        <div class="card">
+          <div class="title">
+            <h3>Next project slot</h3>
+            <span class="badge">Coming soon</span>
+          </div>
+          <p>
+            Add your next repo here (e.g., KPI dashboard, supply chain analytics, A/B testing,
+            causal inference, forecasting, etc.).
+          </p>
+          <div class="tags">
+            <span class="tag">Analytics</span>
+            <span class="tag">Business Case</span>
+            <span class="tag">Storytelling</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div id="skills" class="section">
+      <h2>Skills</h2>
+      <div class="two-col">
+        <div class="card">
+          <h3 style="margin:0 0 8px">Data & ML</h3>
+          <ul class="list">
+            <li>Data cleaning, feature engineering, model evaluation</li>
+            <li>Classification (churn), calibration & threshold analysis</li>
+            <li>Decision frameworks: EV, cost-benefit, sensitivity</li>
+          </ul>
+        </div>
+        <div class="card">
+          <h3 style="margin:0 0 8px">Tools</h3>
+          <ul class="list">
+            <li>Python, pandas, scikit-learn</li>
+            <li>R (bnlearn etc.), SQL</li>
+            <li>Git/GitHub, Jupyter</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <div id="contact" class="section">
+      <h2>Contact</h2>
+      <div class="card">
+        <p style="margin:0; color:var(--muted)">
+          GitHub:
+          <a href="https://github.com/sudeshnn" target="_blank" rel="noreferrer" style="text-decoration:underline">
+            github.com/sudeshnn
+          </a>
+        </p>
+        <p style="margin:10px 0 0; color:var(--muted)">
+          (Optional) Add LinkedIn/email here when ready.
+        </p>
+      </div>
+    </div>
+
+    <footer>
+      Built with plain HTML/CSS · Hosted on GitHub Pages
+    </footer>
+  </div>
+</body>
+</html>
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
   <meta charset="UTF-8">
   <title>Sude Şahin | Portfolio</title>
   <style>
